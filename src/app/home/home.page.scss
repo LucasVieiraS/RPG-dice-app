@@ -32,6 +32,7 @@ ion-label {
   font-family: 'Nuosu SIL';
 }
 
+
 .dice-container {
   display: flex;
   align-items: center;
@@ -40,4 +41,11 @@ ion-label {
 
 .font {
   font-family: 'Kdam Thmor Pro', sans-serif;
+}
+
+.resultado {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
 }

@@ -17,15 +17,15 @@ export class HomePage {
   async presentAlert(rollValue) {
     rollValue += 1;
     const alert = await this.alertController.create({
-      cssClass: 'my-custom-class',
-      header: 'Roll',
+      cssClass: 'resultado',
+      header: 'RESULTADO',
       message: rollValue,
       buttons: [
         {
           text: 'RODAR NOVAMENTE',
           role: 'rodar',
-          cssClass: 'secondary',
-          id: 'cancel-button',
+          cssClass: 'resultado',
+          id: 'roll-button',
           handler: () => {
             this.rollDice();
           }
