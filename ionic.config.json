@@ -1,0 +1,7 @@
+{
+  "name": "d20App",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
