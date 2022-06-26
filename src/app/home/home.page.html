@@ -1,28 +1,30 @@
 <ion-header [translucent]="true">
   <ion-toolbar color="newbg">
     <ion-buttons slot="primary">
-      <ion-button (click)="clickedStar()">
+      <ion-button>
         <ion-icon slot="icon-only" name="dice"></ion-icon>
       </ion-button>
     </ion-buttons>
-    <ion-title class="font">DADOS</ion-title>
-    <ion-buttons slot="end">
-      <ion-menu-button autoHide="false"></ion-menu-button>
-    </ion-buttons>
+    <ion-title slot="start">DADOS</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true" color="realbg">
-  <ion-card class="dice-container">
+  <!--camera-controls-->
+  <ion-card>
+    <ion-card-header>
+      <div>
+        <ion-button (click)="rollDice()">
+          <ion-icon name="dice" slot="end"></ion-icon>
+          RODAR
+        </ion-button>
+      </div>
+    </ion-card-header>
     <ion-item>
-      <ion-item>
-        <ion-icon name="pin" slot="start"></ion-icon>
-        <ion-label>{{roll}}</ion-label>
-      </ion-item>
-      <ion-thumbnail slot="start">
-        <img src="http://cdn.onlinewebfonts.com/svg/img_554110.png">
-      </ion-thumbnail>
-      <ion-button fill="outline" slot="end" (click)="rollDice()">RODAR</ion-button>
+      <model-viewer id="viewer" class="viewer" src="assets/Dice.glb" ios-src="assets/Dice.glb" interpolation-decay="50" camera-orbit="0deg 0deg"></model-viewer>
+    </ion-item>
+    <ion-item>
+      <ion-label>RESULTADO: <strong>{{result}}</strong></ion-label>
     </ion-item>
   </ion-card>
 </ion-content>

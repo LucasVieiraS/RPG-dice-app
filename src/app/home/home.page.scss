@@ -1,51 +1,21 @@
 @import url('https://fonts.googleapis.com/css2?family=Kdam+Thmor+Pro&family=Nuosu+SIL&display=swap');
 
-#container {
-  text-align: center;
-
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 50%;
-  transform: translateY(-50%);
+model-viewer {
+  height: 50vh;
+  margin-left: auto;
+  margin-right: auto;
 }
 
-#container strong {
-  font-size: 20px;
-  line-height: 26px;
+ion-card-header {
+  div {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: space-around;
+    margin-bottom: 5px;
+  }
 }
 
-#container p {
-  font-size: 16px;
-  line-height: 22px;
-
-  color: #8c8c8c;
-
-  margin: 0;
-}
-
-#container a {
-  text-decoration: none;
-}
-
-ion-label {
-  font-family: 'Nuosu SIL';
-}
-
-
-.dice-container {
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-}
-
-.font {
-  font-family: 'Kdam Thmor Pro', sans-serif;
-}
-
-.resultado {
-  display: flex;
-  align-items: center;
-  text-align: center;
-  justify-content: center;
+ion-title {
+  font-family: 'Trebuchet MS', sans-serif;
 }
