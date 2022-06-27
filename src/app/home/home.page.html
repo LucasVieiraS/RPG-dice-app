@@ -10,7 +10,6 @@
 </ion-header>
 
 <ion-content [fullscreen]="true" color="realbg">
-  <!--camera-controls-->
   <ion-card>
     <ion-card-header>
       <div>
@@ -21,7 +20,8 @@
       </div>
     </ion-card-header>
     <ion-item>
-      <model-viewer id="viewer" class="viewer" src="assets/Dice.glb" ios-src="assets/Dice.glb" camera-controls interpolation-decay="50" camera-orbit="0deg 0deg"></model-viewer>
+      <!--camera-controls-->
+      <model-viewer id="viewer" class="viewer" src="assets/Dice.glb" camera-controls ios-src="assets/Dice.glb" interpolation-decay="50" camera-orbit="0deg 0deg"></model-viewer>
     </ion-item>
     <ion-item>
       <ion-label>RESULTADO: <strong>{{result}}</strong></ion-label>

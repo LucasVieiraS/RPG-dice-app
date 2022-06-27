@@ -17,6 +17,33 @@ export class HomePage {
   loadedDice = false;
   diceElement;
 
+  degreesData = [
+    {
+      x: 0,
+      y: -90,
+    },
+    {
+      x: 90,
+      y: 90,
+    },
+    {
+      x: 180,
+      y: 90,
+    },
+    {
+      x: 0,
+      y: 90,
+    },
+    {
+      x: -90,
+      y: 90,
+    },
+    {
+      x: 0,
+      y: 180,
+    },
+  ];
+
   constructor(public toastController: ToastController) {
   }
 
@@ -43,44 +70,6 @@ export class HomePage {
     ) + 1;
   }
 
-  getDiceCoordinate() {
-    const id = this.getRandomNumberInRange(4);
-    if (id === 1) {
-      return -90;
-    } else {
-      if (id === 2) {
-        return 90;
-      } else {
-        if (id === 3) {
-          return -90;
-        }
-      }
-    }
-    return 90;
-  }
-
-  getResult(): number {
-    if (this.y === 0 || this.y === -90) {
-      return 1;
-    }
-    if (this.x === 90 && this.y === 90) {
-      return 2;
-    }
-    if (this.x === 180 && this.y === 90) {
-      return 3;
-    }
-    if (this.x === -90 && this.y === 90) {
-      return 5;
-    }
-    if (this.x === 0 && this.y === 90) {
-      return 4;
-    }
-    if (this.y === 180) {
-      return 6;
-    }
-    return 0;
-  }
-
   limitValue(num: number): number{
     const MIN = -90;
     const MAX = 180;
@@ -95,8 +84,8 @@ export class HomePage {
     if (this.loadedDice === false) {
       this.loadDice();
     }
-    for (let i = 0; i < 5; i ++) {
 
+    /*
       const xResult = this.getDiceCoordinate();
       const yResult = this.getDiceCoordinate();
 
@@ -118,10 +107,20 @@ export class HomePage {
 
       this.diceElement.setAttribute('camera-orbit', `${this.x}deg ${this.y}deg`);
       await this.delay(500);
+    */
 
+    let generatedValue;
+    for (let i = 0; i < 3; i ++) {
+      generatedValue = this.getRandomNumberInRange(6);
+      console.log(generatedValue);
+      this.x = this.degreesData[generatedValue - 1].x;
+      this.y = this.degreesData[generatedValue - 1].y;
+      this.diceElement.setAttribute('camera-orbit', `${this.x}deg ${this.y}deg`);
+      this.result = generatedValue;
+      await this.delay(500);
     }
 
-    this.showNotification(this.getResult());
+    this.showNotification(generatedValue);
   }
 
   loadDice() {
