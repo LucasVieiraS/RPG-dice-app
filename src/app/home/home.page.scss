@@ -16,6 +16,61 @@ ion-card-header {
   }
 }
 
-ion-title {
-  font-family: 'Trebuchet MS', sans-serif;
+ion-toolbar {
+  ion-icon {
+    scale: 2.5;
+  }
+  ion-card-content {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    text-align: center;
+    flex-direction: row;
+  }
+}
+
+ion-thumbnail {
+  width: 100%;
+}
+
+ion-avatar {
+  img {
+    filter: brightness(0) invert(1);
+  }
+}
+
+.footer {
+  position: fixed;
+  bottom: 0;
+}
+
+ion-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  flex-direction: row;
+  width: 100vw;
+  margin-bottom: 20px;
+  ion-item {
+    border-radius: 5rem;
+  }
+}
+
+ion-list {
+  ion-item {
+    margin-bottom: 15px;
+  }
+}
+
+div {
+  ion-card {
+    ion-item {
+      height: 38vh;
+    }
+  }
+}
+
+.dice-element {
+  width: 100px;
+  height: 100px;
 }

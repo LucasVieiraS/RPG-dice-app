@@ -9,60 +9,51 @@ import { ToastController } from '@ionic/angular';
 
 export class HomePage {
 
-  result = 0;
+  // Home-related
+  currentSegment = 'tabletop';
+  dices = 1;
+  increment = 1;
+  isRolling = false;
 
-  x = 90;
-  y = 90;
-
-  loadedDice = false;
-  diceElement;
-
-  degreesData = [
+  // Data
+  diceData = [
     {
-      x: 0,
-      y: -90,
-    },
-    {
-      x: 90,
-      y: 90,
-    },
-    {
-      x: 180,
-      y: 90,
-    },
-    {
-      x: 0,
-      y: 90,
-    },
-    {
-      x: -90,
-      y: 90,
-    },
-    {
-      x: 0,
-      y: 180,
-    },
+      name: 'd4',
+      image: 'https://static.thenounproject.com/png/2453696-200.png',
+      maxRange: 4,
+      minRange: 1,
+    }
   ];
 
   constructor(public toastController: ToastController) {
   }
 
-  async showNotification(result: number) {
+  async showNotification(generatedText: string) {
     const toast = await this.toastController.create({
       icon: 'Dice',
-      message: `RESULTADO FINAL: ${result}`,
+      message: generatedText,
       duration: 2000
     });
     toast.present();
   }
 
-  delay(delayInms) {
-    return new Promise(resolve => {
-      setTimeout(() => {
-        resolve(2);
-      }, delayInms);
-    });
+  clamp(num, min, max) {
+    return Math.min(Math.max(num, min), max);
   }
+
+  switchSegment(event) {
+    this.currentSegment = event.target.value;
+  }
+
+  switchDices(increment) {
+    this.dices = this.clamp(this.dices + increment, 1, 100000);
+  }
+
+  switchIncrement(increment) {
+    this.increment = this.clamp(this.increment + increment, 0, 100000);
+  }
+
+  delay = (ms, result) => new Promise(resolve => setTimeout(() => resolve(result), ms));
 
   getRandomNumberInRange(maxLimit: number = 180) {
     return Math.floor(
@@ -80,52 +71,21 @@ export class HomePage {
     z = this.limitValue(desiredValue);
   }
 
-  async rollDice() {
-    if (this.loadedDice === false) {
-      this.loadDice();
+  async rollDice(data) {
+    const generatedValues = [];
+    const generatedFormula = `${this.dices}d + ${this.increment}`;
+    let generatedText = `Results (${generatedFormula}): `;
+    for (let i = 0; i < this.dices; i++) {
+      generatedValues.push(this.getRandomNumberInRange(data.maxRange));
+      generatedText = generatedText + ` ${this.dices}${i === this.dices ? '.' : ','}`;
     }
-
-    /*
-      const xResult = this.getDiceCoordinate();
-      const yResult = this.getDiceCoordinate();
-
-      const currentY = this.y;
-      const currentX = this.x;
-
-      this.x = this.limitValue(currentX + xResult);
-      this.y = this.limitValue(currentY + yResult);
-
-      if (this.x === currentX) {
-        this.x = this.limitValue(xResult);
-      }
-
-      if (this.y === currentY) {
-        this.y = this.limitValue(yResult);
-      }
-
-      this.result = this.getResult();
-
-      this.diceElement.setAttribute('camera-orbit', `${this.x}deg ${this.y}deg`);
-      await this.delay(500);
-    */
-
-    let generatedValue;
-    for (let i = 0; i < 3; i ++) {
-      generatedValue = this.getRandomNumberInRange(6);
-      console.log(generatedValue);
-      this.x = this.degreesData[generatedValue - 1].x;
-      this.y = this.degreesData[generatedValue - 1].y;
-      this.diceElement.setAttribute('camera-orbit', `${this.x}deg ${this.y}deg`);
-      this.result = generatedValue;
-      await this.delay(500);
-    }
-
-    this.showNotification(generatedValue);
+    return this.showNotification(generatedText);
   }
 
   loadDice() {
     console.log('Loaded dice');
-    this.diceElement = document.querySelector('.viewer');
+    const paragraphs = document.querySelectorAll('model-viewer');
+    paragraphs.forEach(p => console.log(p));
   }
 
 }

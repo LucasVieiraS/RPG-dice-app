@@ -1,30 +1,73 @@
 <ion-header [translucent]="true">
-  <ion-toolbar color="newbg">
-    <ion-buttons slot="primary">
-      <ion-button>
-        <ion-icon slot="icon-only" name="dice"></ion-icon>
-      </ion-button>
-    </ion-buttons>
-    <ion-title slot="start">DADOS</ion-title>
+  <ion-toolbar color="primary">
+    <ion-card-content slot="start">
+      <ion-icon name="dice"></ion-icon>
+      <ion-title>RPG Dice Roller</ion-title>
+    </ion-card-content>
+  </ion-toolbar>
+  <ion-toolbar>
+    <ion-segment value="tabletop">
+      <ion-segment-button value="tabletop" (click)="switchSegment($event)">
+        TABLETOP
+      </ion-segment-button>
+      <ion-segment-button value="history" (click)="switchSegment($event)">
+        ROLL HISTORY
+      </ion-segment-button>
+    </ion-segment>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true" color="realbg">
-  <ion-card>
-    <ion-card-header>
-      <div>
-        <ion-button (click)="rollDice()">
-          <ion-icon name="dice" slot="end"></ion-icon>
-          RODAR
-        </ion-button>
-      </div>
-    </ion-card-header>
-    <ion-item>
-      <!--camera-controls-->
-      <model-viewer id="viewer" class="viewer" src="assets/Dice.glb" camera-controls ios-src="assets/Dice.glb" interpolation-decay="50" camera-orbit="0deg 0deg"></model-viewer>
-    </ion-item>
-    <ion-item>
-      <ion-label>RESULTADO: <strong>{{result}}</strong></ion-label>
-    </ion-item>
-  </ion-card>
+<ion-content [fullscreen]="true" color="darker">
+
+  <ion-grid *ngIf="currentSegment === 'tabletop'">
+
+    <ion-list>
+      <ion-item *ngFor="let dice of diceData">
+        <ion-avatar>
+          <img [src]="dice.image" alt="">
+        </ion-avatar>
+        <ion-label>{{dice.name}}</ion-label>
+        <ion-button fill="outline" (click)="rollDice(dice)">ROLL</ion-button>
+      </ion-item>
+    </ion-list>
+
+    <div class="footer">
+      <ion-row>
+        <ion-item>
+          <ion-button
+            fill="outline"
+            slot="start"
+            shape="round"
+            (click)="switchDices(1)"
+            >+</ion-button
+          >
+          <ion-label>{{dices}}d</ion-label>
+          <ion-button
+            fill="outline"
+            slot="end"
+            shape="round"
+            (click)="switchDices(-1)"
+            >-</ion-button
+          >
+        </ion-item>
+        <ion-item>
+          <ion-button
+            fill="outline"
+            slot="start"
+            shape="round"
+            (click)="switchIncrement(1)"
+            >+</ion-button
+          >
+          <ion-label>+{{increment}}</ion-label>
+          <ion-button
+            fill="outline"
+            slot="end"
+            shape="round"
+            (click)="switchIncrement(-1)"
+            >-</ion-button
+          >
+        </ion-item>
+      </ion-row>
+    </div>
+  </ion-grid>
 </ion-content>
