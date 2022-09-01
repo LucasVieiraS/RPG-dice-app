@@ -12,7 +12,7 @@ export class HomePage {
   // Home-related
   currentSegment = 'tabletop';
   dices = 1;
-  increment = 1;
+  increment = 0;
   isRolling = false;
 
   // Data
@@ -74,10 +74,10 @@ export class HomePage {
   async rollDice(data) {
     const generatedValues = [];
     const generatedFormula = `${this.dices}d + ${this.increment}`;
-    let generatedText = `Results (${generatedFormula}): `;
+    let generatedText = `(${generatedFormula}): `;
     for (let i = 0; i < this.dices; i++) {
-      generatedValues.push(this.getRandomNumberInRange(data.maxRange));
-      generatedText = generatedText + ` ${this.dices}${i === this.dices ? '.' : ','}`;
+      generatedValues.push(this.getRandomNumberInRange(data.maxRange) + this.increment);
+      generatedText = generatedText + ` ${this.dices}${this.dices === 1 ? '' : (i === this.dices - 1 ? '.' : ',')}`;
     }
     return this.showNotification(generatedText);
   }
