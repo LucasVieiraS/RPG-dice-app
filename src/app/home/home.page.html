@@ -75,7 +75,7 @@
 
     <ion-list>
       <ion-card *ngFor="let history of historyData">
-        <ion-avatar *ngIf="history.value.diceImage">
+        <ion-avatar class="fill-width" *ngIf="history.value.diceImage">
           <img [src]="history.value.diceImage">
         </ion-avatar>
         <ion-label class="dice-type"><strong>{{history.value.type}}</strong></ion-label>
