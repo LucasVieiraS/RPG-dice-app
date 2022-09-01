@@ -117,8 +117,8 @@ export class HomePage implements OnInit {
     generatedText = generatedText + ` = ${total}`;
     let length = await this.dataService.getLength();
     length += 1;
-    this.dataService.set(length.toString(), generatedText);
-    this.historyData.push({value: generatedText});
+    this.dataService.set(length.toString(), {diceImage: data.image, type: data.name, value: generatedText});
+    this.historyData.push({value: {diceImage: data.image, type: data.name, value: generatedText}});
     return this.showNotification(generatedText);
   }
 

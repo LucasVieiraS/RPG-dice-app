@@ -28,7 +28,7 @@ export class DataService {
 
   public async getAll() {
     const toReturn = [];
-    this.storage.forEach((key, value2, index) => {
+    this.storage.forEach((key) => {
       toReturn.push({value: key});
     });
     return toReturn;
