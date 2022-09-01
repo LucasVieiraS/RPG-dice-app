@@ -18,11 +18,41 @@ export class HomePage {
   // Data
   diceData = [
     {
-      name: 'd4',
+      name: 'D4',
       image: 'https://static.thenounproject.com/png/2453696-200.png',
       maxRange: 4,
       minRange: 1,
-    }
+    },
+    {
+      name: 'D6',
+      image: 'https://static.thenounproject.com/png/2453695-200.png',
+      maxRange: 6,
+      minRange: 1,
+    },
+    {
+      name: 'D8',
+      image: 'https://static.thenounproject.com/png/2453699-200.png',
+      maxRange: 8,
+      minRange: 1,
+    },
+    {
+      name: 'D10',
+      image: 'https://static.thenounproject.com/png/2453698-200.png',
+      maxRange: 10,
+      minRange: 1,
+    },
+    {
+      name: 'D12',
+      image: 'https://static.thenounproject.com/png/2453697-200.png',
+      maxRange: 12,
+      minRange: 1,
+    },
+    {
+      name: 'D20',
+      image: 'https://static.thenounproject.com/png/2453700-200.png',
+      maxRange: 20,
+      minRange: 1,
+    },
   ];
 
   constructor(public toastController: ToastController) {
@@ -75,11 +105,14 @@ export class HomePage {
     const generatedValues = [];
     const generatedFormula = `${this.dices}d + ${this.increment}`;
     let generatedText = `(${generatedFormula}): `;
+    let total = 0;
     for (let i = 0; i < this.dices; i++) {
-      generatedValues.push(this.getRandomNumberInRange(data.maxRange) + this.increment);
-      generatedText = generatedText + ` ${this.dices}${this.dices === 1 ? '' : (i === this.dices - 1 ? '.' : ',')}`;
+      const random = this.getRandomNumberInRange(data.maxRange) + this.increment;
+      total += random;
+      generatedValues.push(random);
+      generatedText = generatedText + ` ${random}${this.dices === 1 ? '' : (i === this.dices - 1 ? '' : ' + ')}`;
     }
-    return this.showNotification(generatedText);
+    return this.showNotification(generatedText + ` = ${total}`);
   }
 
   loadDice() {

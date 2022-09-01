@@ -57,8 +57,17 @@ ion-row {
 }
 
 ion-list {
-  ion-item {
+  background-color: rgba(34, 34, 34, 0);
+  ion-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    flex-direction: row;
+    height: 5.6rem;
     margin-bottom: 15px;
+    ion-label {
+      margin-left: 15px;
+    }
   }
 }
 

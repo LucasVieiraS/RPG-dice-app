@@ -22,13 +22,13 @@
   <ion-grid *ngIf="currentSegment === 'tabletop'">
 
     <ion-list>
-      <ion-item *ngFor="let dice of diceData">
+      <ion-card *ngFor="let dice of diceData">
         <ion-avatar>
-          <img [src]="dice.image" alt="">
+          <img [src]="dice.image">
         </ion-avatar>
         <ion-label>{{dice.name}}</ion-label>
         <ion-button fill="outline" (click)="rollDice(dice)">ROLL</ion-button>
-      </ion-item>
+      </ion-card>
     </ion-list>
 
     <div class="footer">
