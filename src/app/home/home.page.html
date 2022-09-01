@@ -70,4 +70,15 @@
       </ion-row>
     </div>
   </ion-grid>
+
+  <ion-grid *ngIf="currentSegment === 'history'">
+
+    <ion-list>
+      <ion-card *ngFor="let history of historyData">
+        <ion-label>{{history.value}}</ion-label>
+      </ion-card>
+    </ion-list>
+
+  </ion-grid>
+
 </ion-content>

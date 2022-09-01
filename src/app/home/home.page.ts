@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ToastController } from '@ionic/angular';
+import { DataService } from '../services/data.service';
 
 @Component({
   selector: 'app-home',
@@ -7,7 +8,7 @@ import { ToastController } from '@ionic/angular';
   styleUrls: ['home.page.scss'],
 })
 
-export class HomePage {
+export class HomePage implements OnInit {
 
   // Home-related
   currentSegment = 'tabletop';
@@ -16,6 +17,7 @@ export class HomePage {
   isRolling = false;
 
   // Data
+  historyData = [];
   diceData = [
     {
       name: 'D4',
@@ -55,7 +57,7 @@ export class HomePage {
     },
   ];
 
-  constructor(public toastController: ToastController) {
+  constructor(public toastController: ToastController, public dataService: DataService) {
   }
 
   async showNotification(generatedText: string) {
@@ -112,13 +114,16 @@ export class HomePage {
       generatedValues.push(random);
       generatedText = generatedText + ` ${random}${this.dices === 1 ? '' : (i === this.dices - 1 ? '' : ' + ')}`;
     }
-    return this.showNotification(generatedText + ` = ${total}`);
+    generatedText = generatedText + ` = ${total}`;
+    let length = await this.dataService.getLength();
+    length += 1;
+    this.dataService.set(length.toString(), generatedText);
+    this.historyData.push({value: generatedText});
+    return this.showNotification(generatedText);
   }
 
-  loadDice() {
-    console.log('Loaded dice');
-    const paragraphs = document.querySelectorAll('model-viewer');
-    paragraphs.forEach(p => console.log(p));
+  async ngOnInit() {
+    this.historyData = await this.dataService.getAll();
   }
 
 }
