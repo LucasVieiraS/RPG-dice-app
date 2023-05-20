@@ -34,38 +34,14 @@
     <div class="footer">
       <ion-row>
         <ion-item>
-          <ion-button
-            fill="outline"
-            slot="start"
-            shape="round"
-            (click)="switchDices(1)"
-            >+</ion-button
-          >
+          <ion-button fill="outline" slot="start" shape="round" (click)="switchDices(1)">+</ion-button>
           <ion-label>{{dices}}d</ion-label>
-          <ion-button
-            fill="outline"
-            slot="end"
-            shape="round"
-            (click)="switchDices(-1)"
-            >-</ion-button
-          >
+          <ion-button fill="outline" slot="end" shape="round" (click)="switchDices(-1)">-</ion-button>
         </ion-item>
         <ion-item>
-          <ion-button
-            fill="outline"
-            slot="start"
-            shape="round"
-            (click)="switchIncrement(1)"
-            >+</ion-button
-          >
+          <ion-button fill="outline" slot="start" shape="round" (click)="switchIncrement(1)">+</ion-button>
           <ion-label>+{{increment}}</ion-label>
-          <ion-button
-            fill="outline"
-            slot="end"
-            shape="round"
-            (click)="switchIncrement(-1)"
-            >-</ion-button
-          >
+          <ion-button fill="outline" slot="end" shape="round" (click)="switchIncrement(-1)">-</ion-button>
         </ion-item>
       </ion-row>
     </div>
@@ -74,6 +50,7 @@
   <ion-grid *ngIf="currentSegment === 'history'">
 
     <ion-list>
+      <ion-button id="historyButton" (click)="clearHistory()">CLEAR HISTORY</ion-button>
       <ion-card *ngFor="let history of historyData">
         <ion-avatar class="fill-width" *ngIf="history.value.diceImage">
           <img [src]="history.value.diceImage">

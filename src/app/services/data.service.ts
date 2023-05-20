@@ -26,10 +26,14 @@ export class DataService {
     return this._storage?.get(key);
   }
 
+  public clear() {
+    return this._storage?.clear();
+  }
+
   public async getAll() {
     const toReturn = [];
     this.storage.forEach((key) => {
-      toReturn.push({value: key});
+      toReturn.push({ value: key });
     });
     return toReturn;
   }

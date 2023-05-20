@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ToastController } from '@ionic/angular';
+import { AlertController } from '@ionic/angular';
 import { DataService } from '../services/data.service';
 
 @Component({
@@ -57,16 +57,17 @@ export class HomePage implements OnInit {
     },
   ];
 
-  constructor(public toastController: ToastController, public dataService: DataService) {
+  constructor(private alertController: AlertController, public dataService: DataService) {
   }
 
   async showNotification(generatedText: string) {
-    const toast = await this.toastController.create({
-      icon: 'Dice',
+    const alert = await this.alertController.create({
+      header: 'Roll Results',
       message: generatedText,
-      duration: 2000
+      buttons: ['OK'],
     });
-    toast.present();
+
+    await alert.present();
   }
 
   clamp(num, min, max) {
@@ -93,7 +94,7 @@ export class HomePage implements OnInit {
     ) + 1;
   }
 
-  limitValue(num: number): number{
+  limitValue(num: number): number {
     const MIN = -90;
     const MAX = 180;
     return Math.min(Math.max(num, MIN), MAX);
@@ -117,9 +118,15 @@ export class HomePage implements OnInit {
     generatedText = generatedText + ` = ${total}`;
     let length = await this.dataService.getLength();
     length += 1;
-    this.dataService.set(length.toString(), {diceImage: data.image, type: data.name, value: generatedText});
-    this.historyData.push({value: {diceImage: data.image, type: data.name, value: generatedText}});
+    this.dataService.set(length.toString(), { diceImage: data.image, type: data.name, value: generatedText });
+    this.historyData.push({ value: { diceImage: data.image, type: data.name, value: generatedText } });
     return this.showNotification(generatedText);
+  }
+
+  clearHistory() {
+    this.dataService.clear();
+    this.historyData = [];
+    return this.showNotification('Roll history successfully cleaned.');
   }
 
   async ngOnInit() {

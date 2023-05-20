@@ -8,7 +8,8 @@
   <base href="/" />
 
   <meta name="color-scheme" content="light dark" />
-  <meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <meta name="viewport"
+    content="viewport-fit=cover, width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
   <meta name="format-detection" content="telephone=no" />
   <meta name="msapplication-tap-highlight" content="no" />
 
@@ -18,11 +19,39 @@
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
 
+  <!-- Primary Meta Tags -->
+  <title>RPG Dice Roller</title>
+  <meta name="title" content="RPG Dice Roller">
+  <meta name="description"
+    content="Roll your way through epic adventures with our RPG dice roller app. Experience the thrill of the roll with a wide range of dice, from D4 to D20. Enhance your tabletop gaming sessions with precision and convenience. Get the ultimate companion for your RPG campaigns and let the dice decide your fate.">
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://rpg-dice-app.vercel.app">
+  <meta property="og:title" content="RPG Dice Roller">
+  <meta property="og:description"
+    content="Roll your way through epic adventures with our RPG dice roller app. Experience the thrill of the roll with a wide range of dice, from D4 to D20. Enhance your tabletop gaming sessions with precision and convenience. Get the ultimate companion for your RPG campaigns and let the dice decide your fate.">
+  <meta property="og:image"
+    content="https://raw.githubusercontent.com/LucasVieiraS/RPG-dice-app/master/src/assets/icon/favicon.png">
+
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image">
+  <meta property="twitter:url" content="https://rpg-dice-app.vercel.app">
+  <meta property="twitter:title" content="RPG Dice Roller">
+  <meta property="twitter:description"
+    content="Roll your way through epic adventures with our RPG dice roller app. Experience the thrill of the roll with a wide range of dice, from D4 to D20. Enhance your tabletop gaming sessions with precision and convenience. Get the ultimate companion for your RPG campaigns and let the dice decide your fate.">
+  <meta property="twitter:image"
+    content="https://raw.githubusercontent.com/LucasVieiraS/RPG-dice-app/master/src/assets/icon/favicon.png">
+
   <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
 </head>
 
 <body>
   <app-root></app-root>
+  <script defer>
+    // Force mobile view, this version is purely for mobile website display.
+    document.body.style = 'width: 23vw; position: absolute; left: 50%; min-width: 25rem; max-width: 98vw; top: 50%; transform: translate(-50%, -50%);'
+  </script>
 </body>
 
 </html>
